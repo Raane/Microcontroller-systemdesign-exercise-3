@@ -1,6 +1,10 @@
 #ifndef TOWER_H
 #define TOWER_H
 
+#define TOWER_NORMAL      0
+#define TOWER_FAST        1
+#define TOWER_EXPENSIVE   2
+
 typedef struct{
    int x;
    int y;
@@ -8,7 +12,7 @@ typedef struct{
    int cooldown;
 } Tower;
 
-Tower* create_tower(int type);
+Tower* create_tower(int tower_type);
 
 #endif
 

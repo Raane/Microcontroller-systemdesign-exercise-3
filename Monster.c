@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "Monster.h"
 
 Monster* create_monster(int monster_type){
