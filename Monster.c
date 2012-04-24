@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "Monster.h"
+#include "render.h"
 
 Monster* create_monster(int monster_type){
     Monster* monster = (Monster*) malloc(sizeof(Monster));
@@ -31,6 +32,6 @@ Monster* create_monster(int monster_type){
     return monster;
 }
 
-void monster_render(Monster* m){
-    return;
+void monster_render(Monster* m, char*buffer){
+    render_rect(buffer, m->x, m->y,10,10, 'x');
 }

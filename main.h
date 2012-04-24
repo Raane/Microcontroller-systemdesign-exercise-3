@@ -1,8 +1,5 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-void tick(){
-    return;
-}
 
 #endif

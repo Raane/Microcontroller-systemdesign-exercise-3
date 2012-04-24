@@ -27,6 +27,7 @@ typedef struct{
 } Monster;
 
 Monster* create_monster(int monster_type);
-void monster_render(Monster* m);
+void monster_render(Monster* m,char*buffer);
+
 
 #endif

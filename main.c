@@ -26,7 +26,7 @@ int main(int argc, char**argv){
         }
 
         render();
-        usleep(1000000);
+        usleep(200000);
     }
     return 0;
 }
