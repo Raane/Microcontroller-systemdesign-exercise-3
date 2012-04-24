@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <Tower.h>
+#include "Tower.h"
 
 Tower* create_tower(int tower_type){
     Tower* tower = (Tower*) malloc(sizeof(Tower));
@@ -10,5 +10,3 @@ Tower* create_tower(int tower_type){
     tower->cooldown = 0;
     return tower;
 }
-
-
