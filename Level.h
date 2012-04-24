@@ -31,4 +31,14 @@ Level* load_level(char*filename){
     return level;
 }
 
+void level_print(Level*l){ //debugging
+    for(y=0;y<MAP_HEIGHT;y++){
+        for(x=0;x<MAP_WIDTH;x++){
+            printf("%c", l->map[x][y]+64);
+        }
+        printf("\n");
+    }
+    return;
+}
+
 #endif
