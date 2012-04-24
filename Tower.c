@@ -10,3 +10,7 @@ Tower* create_tower(int tower_type){
     tower->cooldown = 0;
     return tower;
 }
+
+void tower_render(Tower*t, char*buffer){
+    render_rect(buffer, t->x, t->y,10,10, '|');
+}

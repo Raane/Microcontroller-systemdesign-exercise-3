@@ -5,28 +5,23 @@
 #include "game.h"
 #include "main.h"
 
-clock_t t;
-clock_t old_t;
-clock_t dt;
 
-
+int dt;
 int main(int argc, char**argv){
 
-    dt = 0;
+    dt=0;
     init();
 
     while(1){
-        old_t = t;
-        t = clock();
-        dt += t-old_t;
 
-        while(dt > CLOCKS_PER_SEC/60){
-            dt -= CLOCKS_PER_SEC/60;
+        while(dt > 0){
             tick();
+            dt--;
         }
+        dt+= 15;
 
         render();
-        usleep(200000);
+        usleep(250000);
     }
     return 0;
 }
