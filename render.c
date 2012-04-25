@@ -15,9 +15,9 @@ void render_rect(char*buffer, int x0, int y0, int w, int h, char color){
 void flip_buffers(){
     system("clear");
     int x, y;
-    for(y=0;y<SCREEN_H/4;y++){
-        for(x=0;x<SCREEN_W/4;x++){
-            printf("%c ", buffer[4*(x + y * SCREEN_W)]);
+    for(y=0;y<SCREEN_H/RENDER_GLOBAL_SCALING_FACTOR;y++){
+        for(x=0;x<SCREEN_W/RENDER_GLOBAL_SCALING_FACTOR;x++){
+            printf("%c ", buffer[RENDER_GLOBAL_SCALING_FACTOR*(x + y * SCREEN_W)]);
         }
         printf("\n");
     }

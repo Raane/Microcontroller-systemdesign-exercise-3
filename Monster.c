@@ -7,6 +7,7 @@ Monster* create_monster(int monster_type){
     monster->x = 0;
     monster->y = 0;
     monster->progression = 0;
+    monster->path_step = 0;
     monster->velocity = 0;
     monster->monster_type = monster_type;
     switch(monster_type){

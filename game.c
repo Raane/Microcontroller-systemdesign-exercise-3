@@ -7,10 +7,11 @@
 #include "Tower.h"
 #include "render.h"
 
-Level* test_level;
+Level* level;
+Player* player;
 
 void init(){
-    test_level = load_level("test.lvl");
+    level = load_level("test.lvl");
     number_of_monsters = 0;
     number_of_towers = 0;
     screen = (char*) malloc(sizeof(char)*SCREEN_W*SCREEN_H);
@@ -26,7 +27,7 @@ void init(){
 
 void render(){ 
     render_rect(buffer, 0, 0,SCREEN_H, SCREEN_H, ' '); //clear screen
-    level_render(test_level,buffer);
+    level_render(level,buffer);
     int i;
     for(i=0;i<number_of_monsters;i++){
         monster_render(monsters[i], buffer);
@@ -40,12 +41,21 @@ void render(){
 void tick(){
     int i;
     for(i=0;i<number_of_monsters;i++){
-        monsters[i]->x += 1;
+        monsters[i]->progression++;
+
+        if(monsters[i]->progression > (1+monsters[i]->path_step)*256 /*level->path[monsters[i]->path_step*3+2]*/){
+            monsters[i]->path_step++;
+        }
+        monsters[i]->x = lerp(level->path[monsters[i]->path_step*2], level->path[(monsters[i]->path_step+1)*2], (monsters[i]->progression%256)/256.0);
+        monsters[i]->y = lerp(level->path[monsters[i]->path_step*2+1], level->path[(monsters[i]->path_step+1)*2+1], (monsters[i]->progression%256)/256.0);
     }
     for(i=0;i<number_of_towers;i++){
     }
 }
 
+float lerp(int value0, int value1, float progression){
+    return value0 + (value1-value0)*progression;
+}
 
 
 void add_monster(Monster*m){

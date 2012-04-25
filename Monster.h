@@ -5,7 +5,7 @@
 #define MONSTER_MAGGOT_HEALTH 100
 
 #define MONSTER_RAT 1
-#define MOSNTER_RAT_HEALTH 200
+#define MONSTER_RAT_HEALTH 200
 
 #define MONSTER_BEAR 2
 #define MONSTER_BEAR_HEALTH 300
@@ -16,11 +16,14 @@
 #define MONSTER_DRAGON 4
 #define MONSTER_DRAGON_HEALTH 500
 
+#define MONSTER_SPEED 1
+
 typedef struct{
     float x;
     float y;
     float velocity;
-    float progression;
+    int progression;
+    int path_step;
     int health;
     int attack;
     int monster_type;

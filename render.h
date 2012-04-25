@@ -1,5 +1,7 @@
 #ifndef RENDER_H
 #define RENDER_H
+
+#define RENDER_GLOBAL_SCALING_FACTOR 8
 char*buffer;
 char*screen;
 
