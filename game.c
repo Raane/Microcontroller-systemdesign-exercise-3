@@ -4,7 +4,7 @@
 #include "Level.h"
 #include "Monster.h"
 #include "Tower.h"
-#include "Tower.h"
+#include "Player.h"
 #include "render.h"
 
 Level* level;
@@ -19,10 +19,6 @@ void init(){
     int i;
     add_monster(create_monster(MONSTER_MAGGOT));
     add_tower(create_tower(TOWER_NORMAL));
-    for(i=0;i<SCREEN_H*SCREEN_W;i++){
-        screen[i] =  ' ';
-        buffer[i] =  ' ';
-    }
 }
 
 void render(){ 
