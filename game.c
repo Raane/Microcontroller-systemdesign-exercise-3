@@ -20,7 +20,10 @@ void init(){
     buffer = (char*) malloc(sizeof(char)*SCREEN_W*SCREEN_H);
     int i;
     add_monster(create_monster(MONSTER_MAGGOT));
-    add_tower(create_tower(TOWER_NORMAL));
+    Tower*t = create_tower(TOWER_NORMAL);
+    t->x = 60;
+    t->y = 60;
+    add_tower(t);
 }
 
 void render(){ 
@@ -48,18 +51,15 @@ void tick(){
     for(i=0;i<number_of_towers;i++){
         tower_update(towers[i]);
         for(j=0;j<number_of_monsters;j++){
-            if(pow(towers[i]->x -monsters[i]->x,2) + pow(towers[i]->y - monsters[i]->y,2) < 100){
-                if(tower_fire(towers[i])){
-                    monster_take_hit(monsters[i],10);
+            if(pow(towers[i]->x -monsters[i]->x,2) + pow(towers[i]->y - monsters[i]->y,2) < 1000){
+                if(tower_fire(towers[i]) == 0){
+                    monster_take_hit(monsters[i],40);
                 }
             }
         }
     }
 }
 
-float lerp(int value0, int value1, float progression){
-    return value0 + (value1-value0)*progression;
-}
 
 
 void add_monster(Monster*m){

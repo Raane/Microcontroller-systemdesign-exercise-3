@@ -16,8 +16,12 @@ void tower_render(Tower*t, char*buffer){
 }
 
 int tower_fire(Tower*t){
+    if(t->cooldown == 0){
+        t->cooldown = 100;
+        return 0;
+    }
     return t->cooldown;
-    t->cooldown = 100;
+
 }
 
 void tower_update(Tower*t){

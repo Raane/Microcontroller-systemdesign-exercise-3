@@ -2,6 +2,8 @@
 #include "Monster.h"
 #include "render.h"
 #include "Level.h"
+#include "utils.h"
+
 
 Monster* create_monster(int monster_type){
     Monster* monster = (Monster*) malloc(sizeof(Monster));
@@ -38,13 +40,13 @@ void monster_render(Monster* m, char*buffer){
     render_rect(buffer, m->x, m->y,10,10, 'x');
 }
 
-int monster_update(Monster*m, Level *level){
+int monster_update(Monster*m, Level *l){
     m->progression++;
     if(m->progression > (1+m->path_step)*256){
         m->path_step++;
     }
-    m->x = lerp(level->path[m->path_step*2], level->path[(m->path_step+1)*2], (m->progression%256)/256.0);
-    m->y = lerp(level->path[m->path_step*2+1], level->path[(m->path_step+1)*2+1], (m->progression%256)/256.0);
+    m->x = lerp(l->path[m->path_step*2],l->path[(m->path_step+1)*2], (m->progression%256)/256.0);
+    m->y = lerp(l->path[m->path_step*2+1],l->path[(m->path_step+1)*2+1], (m->progression%256)/256.0);
     return m->health;
 }
 
