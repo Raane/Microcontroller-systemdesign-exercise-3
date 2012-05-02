@@ -14,3 +14,12 @@ Tower* create_tower(int tower_type){
 void tower_render(Tower*t, char*buffer){
     render_rect(buffer, t->x, t->y,10,10, '|');
 }
+
+int tower_fire(Tower*t){
+    return t->cooldown;
+    t->cooldown = 100;
+}
+
+void tower_update(Tower*t){
+    if(t->cooldown > 0) t->cooldown--;
+}

@@ -6,12 +6,14 @@
 #include "Tower.h"
 #include "Player.h"
 #include "render.h"
+#include <math.h>
 
 Level* level;
 Player* player;
 
 void init(){
     level = load_level("test.lvl");
+    player = create_player();
     number_of_monsters = 0;
     number_of_towers = 0;
     screen = (char*) malloc(sizeof(char)*SCREEN_W*SCREEN_H);
@@ -31,21 +33,27 @@ void render(){
     for(i=0;i<number_of_towers;i++){
         tower_render(towers[i], buffer);
     }
+    player_render(player, buffer);
     flip_buffers();
 }
 
 void tick(){
-    int i;
+    int i,j;
     for(i=0;i<number_of_monsters;i++){
-        monsters[i]->progression++;
-
-        if(monsters[i]->progression > (1+monsters[i]->path_step)*256 /*level->path[monsters[i]->path_step*3+2]*/){
-            monsters[i]->path_step++;
+        if(!monster_update(monsters[i],level)){
+            monsters[i--] = monsters[--number_of_monsters];
+            monster_delete(monsters[number_of_monsters-1]);
         }
-        monsters[i]->x = lerp(level->path[monsters[i]->path_step*2], level->path[(monsters[i]->path_step+1)*2], (monsters[i]->progression%256)/256.0);
-        monsters[i]->y = lerp(level->path[monsters[i]->path_step*2+1], level->path[(monsters[i]->path_step+1)*2+1], (monsters[i]->progression%256)/256.0);
     }
     for(i=0;i<number_of_towers;i++){
+        tower_update(towers[i]);
+        for(j=0;j<number_of_monsters;j++){
+            if(pow(towers[i]->x -monsters[i]->x,2) + pow(towers[i]->y - monsters[i]->y,2) < 100){
+                if(tower_fire(towers[i])){
+                    monster_take_hit(monsters[i],10);
+                }
+            }
+        }
     }
 }
 

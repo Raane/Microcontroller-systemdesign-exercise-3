@@ -18,6 +18,8 @@
 
 #define MONSTER_SPEED 1
 
+#include "Level.h"
+
 typedef struct{
     float x;
     float y;
@@ -31,6 +33,7 @@ typedef struct{
 
 Monster* create_monster(int monster_type);
 void monster_render(Monster* m,char*buffer);
-
-
+void monster_take_hit(Monster* m, int hit);
+int  monster_update(Monster*m, Level*level);
+void monster_delete(Monster*m);
 #endif
