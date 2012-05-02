@@ -13,6 +13,7 @@ typedef struct{
 } Tower;
 
 Tower* create_tower(int tower_type);
-
+int tower_fire(Tower*t);
+void tower_update(Tower*);
 #endif
 

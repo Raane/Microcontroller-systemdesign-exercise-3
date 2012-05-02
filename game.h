@@ -20,6 +20,8 @@ void add_monster();
 void remove_monster();
 void tick_monsters();
 
+float lerp(int value0, int value1, float progression);
+
 void init();
 void tick();
 void render();

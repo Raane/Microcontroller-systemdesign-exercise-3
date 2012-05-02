@@ -5,7 +5,7 @@
 #define MONSTER_MAGGOT_HEALTH 100
 
 #define MONSTER_RAT 1
-#define MOSNTER_RAT_HEALTH 200
+#define MONSTER_RAT_HEALTH 200
 
 #define MONSTER_BEAR 2
 #define MONSTER_BEAR_HEALTH 300
@@ -16,11 +16,16 @@
 #define MONSTER_DRAGON 4
 #define MONSTER_DRAGON_HEALTH 500
 
+#define MONSTER_SPEED 1
+
+#include "Level.h"
+
 typedef struct{
     float x;
     float y;
     float velocity;
-    float progression;
+    int progression;
+    int path_step;
     int health;
     int attack;
     int monster_type;
@@ -28,6 +33,7 @@ typedef struct{
 
 Monster* create_monster(int monster_type);
 void monster_render(Monster* m,char*buffer);
-
-
+void monster_take_hit(Monster* m, int hit);
+int  monster_update(Monster*m, Level*level);
+void monster_delete(Monster*m);
 #endif
